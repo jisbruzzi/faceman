@@ -19,3 +19,16 @@ class Cargo(models.Model):
     puntos = models.IntegerField(default=0)
     docente = models.ForeignKey(Docente, on_delete=models.PROTECT)
     catedra = models.ForeignKey(Catedra, on_delete=models.PROTECT)
+
+
+class Movimiento(models.Model):
+    tipo = models.CharField(max_length=200)
+    cargo = models.ForeignKey(Cargo, on_delete=models.PROTECT)
+    puntos = models.IntegerField(default=0)
+    motivo = models.CharField(max_length=200)
+
+
+class Facepres(models.Model):
+    movimientos = models.ManyToManyField(Movimiento)
+    numero = models.CharField(max_length=200)
+    estado = models.CharField(max_length=200)
